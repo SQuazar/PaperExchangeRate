@@ -1,0 +1,19 @@
+name: PaperExchangeRate
+version: '1.0.0'
+main: net.nullpointer.exchange.PaperExchangeRate
+api-version: '1.18'
+authors: [ NullPointer ]
+description: PaperExchangeRate - Fetch actual exchange rate and convert currencies!
+softdepend:
+  - PlaceholderAPI
+commands:
+  rate:
+    usage: /rate [base] [target]
+    description: Gets exchange rate
+  convert:
+    usage: /convert [base] [target] [value]
+    description: Convert currency
+  paperexchangerate:
+    usage: /paperexchangerate
+    description: Reload configuration
+    aliases: [ per ]

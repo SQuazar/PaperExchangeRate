@@ -1,0 +1,7 @@
+# Только MiniMessage формат
+messages:
+  currency-not-found: "<red>Валюта <currency> не найдена"
+  format: "<yellow><date>: <aqua><base_value><base_currency_symbol></aqua> <yellow>=</yellow> <aqua><target_value><target_currency_symbol></aqua>"
+  invalid-number: "<red>Неверный формат ввода"
+  invalid-number-2: "<red>Число не должно быть меньше или равным нулю"
+  error: "<red>Что-то пошло не так. Обратитесь к администратору"
