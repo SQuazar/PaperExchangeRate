@@ -17,10 +17,6 @@ public class ExchangeRateCommand extends AbstractExchangeCommand {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
-        if (!sender.hasPermission("exchange.get")) {
-            sender.sendMessage(Bukkit.getPermissionMessage());
-            return true;
-        }
         if (args.length != 2) {
             return false;
         }

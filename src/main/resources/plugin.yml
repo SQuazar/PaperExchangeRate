@@ -10,10 +10,13 @@ commands:
   rate:
     usage: /rate [base] [target]
     description: Gets exchange rate
+    permission: exchange.rate
   convert:
     usage: /convert [base] [target] [value]
     description: Convert currency
+    permission: exchange.convert
   paperexchangerate:
     usage: /paperexchangerate
     description: Reload configuration
     aliases: [ per ]
+    permission: exchange.reload
