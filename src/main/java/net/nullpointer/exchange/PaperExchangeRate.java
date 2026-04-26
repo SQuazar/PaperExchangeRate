@@ -7,6 +7,7 @@ import net.nullpointer.exchange.config.ExchangeConfig;
 import net.nullpointer.exchange.papi.ExchangeRateExpansion;
 import net.nullpointer.exchange.service.ExchangeService;
 import net.nullpointer.exchange.service.impl.ExchangeServiceImpl;
+import net.nullpointer.exchange.util.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,10 +18,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.net.http.HttpClient;
 import java.time.Duration;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class PaperExchangeRate extends JavaPlugin {
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern(
+            "dd.MM.yyyy HH:mm"
+    ).withZone(ZoneId.systemDefault());
+
     private ExchangeConfig config;
     private ExecutorService executor;
     private ExchangeService exchangeService;
@@ -32,10 +39,24 @@ public final class PaperExchangeRate extends JavaPlugin {
         config.load();
 
         setupService();
+        registerCommands();
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null)
             new ExchangeRateExpansion(exchangeService);
 
+        UpdateChecker.fetchUpdate(this, info -> {
+            String version = info.tag().substring(1);
+            if (!getDescription().getVersion().equals(version)) {
+                getLogger().warning("New version for %s is available:".formatted(info.name()));
+                getLogger().warning(info.downloadUrl());
+                getLogger().warning("Published at: %s".formatted(FORMAT.format(info.publishedAt())));
+                if (info.preRelease())
+                    getLogger().warning("This is pre release version!");
+            } else getLogger().info("You used latest version!");
+        });
+    }
+
+    private void registerCommands() {
         TabCompleter tabCompleter = new CurrencyTabCompleter(exchangeService);
         getCommand("rate").setExecutor(new ExchangeRateCommand(exchangeService, config));
         getCommand("rate").setTabCompleter(tabCompleter);
