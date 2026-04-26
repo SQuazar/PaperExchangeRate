@@ -1,4 +1,7 @@
 # PaperExchangeRate - Курсы валют на вашем сервере!
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/09743df1-ee9a-453e-98ed-68daba5c61ed" />
+
+## Общая информация
 
 PaperExchangeRate использует публичный API для получения информации о курсе валют.
 Вся работа с REST API происходит асинхронно и кэшируется для ускорения работы плагина.
