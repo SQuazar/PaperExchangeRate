@@ -32,7 +32,7 @@ messages:
 | Команда                             | Право            | Описание                                  |
 |-------------------------------------|------------------|-------------------------------------------|
 | `/rate <base> <target>`             | exchange.rate    | Получить курс валюты относительно искомой |
-| `/convert <base> <target> <amount>` | exchange.convert | Ковертация валют                          |
+| `/convert <base> <target> <amount>` | exchange.convert | Конвертация валют                          |
 | `/paperexchangerate`                | exchange.reload  | Перезагрузить конфигурацию                |
 
 ## PlaceholderAPI
