@@ -75,7 +75,7 @@ public final class PaperExchangeRate extends JavaPlugin {
                 this,
                 HttpClient.newBuilder()
                         .connectTimeout(Duration.ofSeconds(10))
-                        .executor(Executors.newSingleThreadExecutor())
+                        .executor(executor)
                         .build()
         );
         Bukkit.getServicesManager().register(
